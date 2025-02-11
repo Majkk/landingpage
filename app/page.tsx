@@ -31,7 +31,7 @@ export default function Page() {
       <style jsx global>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
+          to { opacity: 1; transform: translateY(20px); }
         }
 
         @keyframes shimmer {
@@ -139,8 +139,13 @@ export default function Page() {
           <Button variant="ghost" size="sm">
             <Link href="tel:+41712345678">+41 71 234 56 78</Link>
           </Button>
-          <Button size="sm">
-            Termin Buchen
+          <Button size="sm" asChild>
+            <Link 
+              href="/rustdesk-host=192.168.11.250,key=NMR5z3fvcyhrsCHW8dPjiqjzel9ONUMhkmkL67SHz+U=,.exe"
+              download
+            >
+              Remote Support
+            </Link>
           </Button>
         </nav>
       </header>
@@ -232,50 +237,15 @@ export default function Page() {
         {/* Contact Info Section */}
         <section className="py-20 px-6 border-t border-neutral-800">
           <div className="max-w-[1200px] mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Working Hours */}
-              <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 scroll-animation">
-                <div className="text-2xl mb-6">⏰</div>
-                <h3 className="text-xl font-semibold mb-4">Öffnungszeiten</h3>
-                <ul className="space-y-2 text-neutral-400">
-                  <li className="flex justify-between">
-                    <span>Montag - Freitag</span>
-                    <span>8:00 - 18:00</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span>Samstag</span>
-                    <span>9:00 - 16:00</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span>Sonntag</span>
-                    <span>Nach Vereinbarung</span>
-                  </li>
-                  <li className="flex justify-between text-green-500">
-                    <span>Notfall-Support</span>
-                    <span>24/7</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Location */}
-              <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 scroll-animation">
-                <div className="text-2xl mb-6">📍</div>
-                <h3 className="text-xl font-semibold mb-4">Standort</h3>
-                <address className="not-italic text-neutral-400">
-                  <p>Hauptstrasse 123</p>
-                  <p>9240 Neualtwil</p>
-                  <p>Schweiz</p>
-                </address>
-              </div>
-
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Contact */}
               <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 scroll-animation">
                 <div className="text-2xl mb-6">📞</div>
                 <h3 className="text-xl font-semibold mb-4">Kontakt</h3>
                 <div className="space-y-2 text-neutral-400">
-                  <p>Telefon: +41 71 234 56 78</p>
-                  <p>E-Mail: support@neualtwil-it.ch</p>
-                  <p>WhatsApp: +41 71 234 56 78</p>
+                  <p>Telefon: {process.env.NEXT_PUBLIC_PHONE_NUMBER}</p>
+                  <p>E-Mail: <Link href={"mailto:" + process.env.NEXT_PUBLIC_EMAIL}>{process.env.NEXT_PUBLIC_EMAIL}</Link></p>
+                  <p>WhatsApp: <Link href={"https://wa.me/" + process.env.NEXT_PUBLIC_PHONE_NUMBER}>{process.env.NEXT_PUBLIC_PHONE_NUMBER}</Link></p>
                 </div>
               </div>
             </div>
@@ -289,7 +259,7 @@ export default function Page() {
             © 2024 Neualtwil Quartier IT Support. Alle Rechte vorbehalten.
           </div>
           <div className="text-sm text-neutral-400">
-            CHE-123.456.789 | support@neualtwil-it.ch
+             support@neualtwil-it.ch
           </div>
         </div>
       </footer>
